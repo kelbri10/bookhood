@@ -4,6 +4,10 @@ export default {
   "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
+      fontFamily: {
+        'heading': ['Libre Baskerville'], 
+        'body': ['Source Sans Pro']
+      },
       colors: { 
         'custom-dark-gray': '#222222',
         'custom-mustard-yellow': '#ffe66b', 
@@ -15,20 +19,17 @@ export default {
         "custom dark-gray": "#222222"
       },
       keyframes: {
-        underline: { 
+       slideOut: { 
           '0': {
             transform: 'translateX(0)'
-          },
-          '50%': {
-            transform: 'translateX(50%)'
-          },
-          '100%': {
+          }, 
+          '100%': { 
             transform: 'translateX(100%)'
           }
         }
       }, 
       animation: {
-        underline: 'underline 1s ease-in-out'
+        slideOut: 'slideOut 1s ease-in 1 reverse', 
       },
     },
   },

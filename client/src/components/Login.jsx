@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import useFormInfo from "../hooks/useFormInfo";
 import AccountForm from "./AccountForm";
 import AuthContext  from "../AuthContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => { 
@@ -11,24 +11,18 @@ const Login = () => {
     const {authenticatedUser} = useContext(AuthContext); 
     const navigate = useNavigate()
 
+    const [loading, setLoading] = useState(false); 
+
     //test login information test@gmail.com password: testpassword
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
-
-        try{ 
+        setLoading(true);
+        console.log(loading)
+       try{  
             let userCredential = await signInWithEmailAndPassword(auth, email, password); 
-            const user = userCredential.user; 
-            // console.log(auth);  
-            // console.log(user)
             handleReset(); 
-
-            if(authenticatedUser){ 
-                return navigate("/library")
-            } else { 
-                alert('Error: Please Try Again')
-            }
-            //redirects logged in user to books dashboard
-            
+            setLoading(false)
+            console.log(loading)
         } catch(error){ 
             const errorCode = error.code; 
             const errorMessage = error.message; 
@@ -36,10 +30,28 @@ const Login = () => {
         }
     }
 
+    useEffect(() => { 
+        let ignore = false; 
+        if(authenticatedUser){ 
+            if(!ignore){ 
+                return navigate("/library"); 
+            }
+        }
+
+        return () => { 
+            ignore = true; 
+        }
+    }, [authenticatedUser])
+
     
 
     return ( 
+      
         <div className="">
+
+            {/* NEED TO FIGURE OUT HOW TO SET LOADING */}
+            {loading ? <p className="text-5xl">LOADING</p> : null }
+
             <AccountForm formHeading={'Welcome Back!'}
             email={email} 
             password={password} 

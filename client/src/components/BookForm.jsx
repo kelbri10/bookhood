@@ -1,7 +1,7 @@
-import { useState } from "react";
+
 
 const BookForm = ({form, handleChange, handleSubmit}) => { 
-
+    
     return( 
         
         <form className="flex flex-col"
@@ -36,7 +36,7 @@ const BookForm = ({form, handleChange, handleSubmit}) => {
                 </select>
             </label>
 
-            <button className="bg-custom-dark-gray text-white mt-6 py-2 px-4 rounded-md md:w-1/2 self-center"
+            <button className="bg-custom-dark-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg hover:scale-125 text-white mt-6 py-2 px-4 rounded-md md:w-1/2 self-center"
             type="submit">Submit</button>
         </form>
     

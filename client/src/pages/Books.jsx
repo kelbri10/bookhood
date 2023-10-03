@@ -19,7 +19,7 @@ const Books = () => {
   
     //handles input changes that the user puts in 
     const handleChange = (e) => { 
-        e.preventDefault();
+       // e.preventDefault();
             setForm({ 
                 ...form, 
                 [e.target.id]: e.target.value
@@ -30,11 +30,14 @@ const Books = () => {
     //adds the book to the book array in firebase, updates the booklist state and displays 
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
+        console.log(form)
         setOpen(prevState => !prevState)
-
-        let ratingStars = new Array(parseInt(form.rating)).fill('⭐').join("")
+        if(form.rating === ""){ 
+            form.rating = 1; 
+        }
+        let ratingStars = new Array(parseInt(form.rating)).fill('⭐').join("");
         
-        form.rating = ratingStars
+        form.rating = ratingStars;
 
         setBookList(prev => [...prev, form]); 
 
