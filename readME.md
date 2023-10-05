@@ -47,17 +47,17 @@ Current view of the work in progress page that allows user to add book to the pa
 ![Work in Progress User Page that allows user to add book](image-6.png)
 
 ## To-Do List 
--[ ] Add profile customization page to allow user to customize preferences 
+- [ ] Add profile customization page to allow user to customize preferences 
 
--[ ] Integrate 3rd-party API that will allow user's to receive personalized recommendations and to add books via API with book cover
+- [ ] Integrate 3rd-party API that will allow user's to receive personalized recommendations and to add books via API with book cover
 
--[ ] Allow users to add an image to their saved book
+- [ ] Allow users to add an image to their saved book
 
--[ ] User comment/note section to state thoughts
+- [ ] User comment/note section to state thoughts
 
--[ ] Tags to track "in progress", "not started", and "completed"
+- [ ] Tags to track "in progress", "not started", and "completed"
 
--[ ] Loading icon to provide user feedback
+- [ ] Loading icon to provide user feedback
 
 ## Installation 
 To install the project on your local environment, first make sure you have an account on Google's Firebase platform. 
