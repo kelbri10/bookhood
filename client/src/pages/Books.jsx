@@ -9,7 +9,7 @@ import AuthContext from "../AuthContext";
 
 const Books = () => { 
     const [open, setOpen] = useState(false);
-    const [form, setForm] = useState({title: '', author:'', rating: ''})
+    const [form, setForm] = useState({title: '', author:'', rating: '', startDate:'', endDate:''})
     const [bookList, setBookList] = useState([]);
     const {authenticatedUser} = useContext(AuthContext); 
 
@@ -59,7 +59,6 @@ const Books = () => {
                     if(!ignore){ 
                         setBookList(userSnap.data().books)
                     }
-                    // setBookList(userSnap.data().books)
                 } 
             }
             getData(); 

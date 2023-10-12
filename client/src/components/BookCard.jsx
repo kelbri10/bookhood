@@ -1,6 +1,7 @@
 import {FiTrash2, FiEdit} from "react-icons/fi";
 
-const BookCard = ({title, author, rating}) => { 
+const BookCard = ({title, author, rating, startDate, endDate}) => { 
+ 
     return(
         <article id={title} className="flex flex-col justify-between border-2 
         rounded-lg w-3/4 md:w-1/3 lg:w-1/4 h-80 py-8 px-6
@@ -10,6 +11,13 @@ const BookCard = ({title, author, rating}) => {
                 <p>{author}</p>
                 <p>{rating}</p> 
             </div>
+
+            {!startDate || !endDate ? <div>Click edit to add start and completed date</div>: 
+             <div>
+             <p>Start Date: {startDate}</p>
+             <p>Completed: {endDate}</p>
+         </div>}
+            
             
             <div className="flex flex-row justify-between">
                 {/* for the delete button need to get the books id number */}
