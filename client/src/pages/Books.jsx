@@ -48,6 +48,15 @@ const Books = () => {
    
     }
 
+    const handleDelete = (id) => { 
+        //find where the id = id in the book array in the firestore 
+        //delete doc 
+        let newBookList = bookList.filter(book => book.id !== id); 
+        console.log(newBookList)
+        console.log(`book deleted at ${id}`)
+        setBookList(prevState => [...newBookList]); 
+    }
+
     //useEffect to sync with the firestore database and update the lists as the list is updated 
     useEffect(() => { 
             let ignore = false; 
@@ -83,7 +92,7 @@ const Books = () => {
                 <section className="mx-10 relative">
                 <button onClick={handleDialog}
                     className="bg-custom-mustard-yellow text-custom-dark-gray py-2 px-4 rounded-md my-6">{open ? 'Cancel' : 'Add book'}</button>
-                    <BookDisplay bookList={bookList}/>
+                    <BookDisplay bookList={bookList} handleDelete={handleDelete}/>
                     
                 </section>
 

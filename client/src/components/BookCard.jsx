@@ -1,14 +1,11 @@
 import {FiTrash2, FiEdit} from "react-icons/fi";
 
-const BookCard = ({title, author, rating, startDate, endDate}) => { 
-    const handleDelete = () => { 
-        console.log('book deleted')
-    }
-    const handleEdit = () => { 
-        console.log('book edited')
-    }
+const BookCard = ({book, handleDelete, handleEdit}) => { 
+
+    const {id, title, author, rating, startDate, endDate} = book; 
+
     return(
-        <article id={title} className="flex flex-col justify-between border-2 
+        <article key={id} className="flex flex-col justify-between border-2 
         rounded-lg w-3/4 md:w-1/3 lg:w-1/4 h-80 py-8 px-6
         border-transparent bg-custom-dark-brown  text-white"> 
             <div>
@@ -26,8 +23,8 @@ const BookCard = ({title, author, rating, startDate, endDate}) => {
             
             <div className="flex flex-row justify-between">
                 {/* for the delete button need to get the books id number */}
-                <button onClick={handleDelete}><FiTrash2/></button>
-                <button onClick={handleEdit}><FiEdit /></button>
+                <button onClick={() => handleDelete(id)}><FiTrash2/></button>
+                <button onClick={() => handleEdit(id)}><FiEdit /></button>
             </div>
         </article>
     )
