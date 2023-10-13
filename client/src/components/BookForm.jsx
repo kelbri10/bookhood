@@ -13,7 +13,8 @@ const BookForm = ({form, handleChange, handleSubmit}) => {
                 value={form.title}
                 type="text"
                 id="title"
-                onChange={handleChange} />
+                onChange={handleChange}
+                required />
             </label>
 
             <label htmlFor="author">
@@ -22,12 +23,18 @@ const BookForm = ({form, handleChange, handleSubmit}) => {
                 value={form.author}
                 type="text"
                 id="author"
-                onChange={handleChange} />
+                onChange={handleChange} 
+                required />
             </label>
 
             <label htmlFor="rating">
                 Rating
-                <select className="m-2 border-2 border-custom-dark-gray rounded text-custom-dark-gray" name="rating" id="rating" onChange={handleChange}>
+                <select 
+                className="m-2 border-2 border-custom-dark-gray rounded text-custom-dark-gray" 
+                name="rating" 
+                id="rating" 
+                onChange={handleChange}
+                required>
                     <option  value="1">1</option>
                     <option  value="2">2</option>
                     <option  value="3">3</option>

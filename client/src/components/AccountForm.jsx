@@ -25,6 +25,7 @@ const AccountForm = ({formHeading, email, password, handleEmail, handlePassword,
                             value={email}
                             onChange={handleEmail}
                             required/>
+                        {!email ? <div>Please enter a valid email.</div>: null}
                     </div>
                     
 
@@ -39,6 +40,7 @@ const AccountForm = ({formHeading, email, password, handleEmail, handlePassword,
                         value={password}
                         onChange={handlePassword} 
                         required/>
+                        {!password ? <div>Please enter a valid password.</div>: null}
                     </div>
                     
 

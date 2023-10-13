@@ -6,10 +6,10 @@ import { NavLink } from "react-router-dom";
 import BookForm from "../components/BookForm";
 import Navbar from "../components/Navbar";
 import AuthContext from "../AuthContext";
-
+import { v4 as uuidv4 } from 'uuid'; 
 const Books = () => { 
     const [open, setOpen] = useState(false);
-    const [form, setForm] = useState({title: '', author:'', rating: '', startDate:'', endDate:''})
+    const [form, setForm] = useState({id:'', title: '', author:'', rating: '', startDate:'', endDate:''})
     const [bookList, setBookList] = useState([]);
     const {authenticatedUser} = useContext(AuthContext); 
 
@@ -38,7 +38,7 @@ const Books = () => {
         let ratingStars = new Array(parseInt(form.rating)).fill('⭐').join("");
         
         form.rating = ratingStars;
-
+        form.id = uuidv4(); 
         setBookList(prev => [...prev, form]); 
 
         //setDoc/updateDoc/addDoc take doc references so when doing a reference must start with doc 
@@ -57,6 +57,7 @@ const Books = () => {
                 
                 if(userSnap.exists()) { 
                     if(!ignore){ 
+                        console.log(userSnap.data())
                         setBookList(userSnap.data().books)
                     }
                 } 
