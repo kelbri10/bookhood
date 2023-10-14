@@ -2,14 +2,7 @@ import BookCard from "./BookCard";
 
 
 const BookDisplay = ({bookList, handleDelete}) => { 
-    // const handleDelete = (id) => { 
-    //     //find where the id = id in the book array in the firestore 
-    //     //delete doc 
-    //     let newBookList = bookList.filter(book => book.id !== id); 
-    //     console.log(newBookList)
-    //     console.log(`book deleted at ${id}`)
-    //     setBookList(prevState => [...newBookList]); 
-    // }
+   
     const handleEdit = (id) => { 
         console.log(`book edited at ${id}`)
     }

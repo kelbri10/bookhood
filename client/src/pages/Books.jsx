@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState} from "react";
 import BookDisplay from "../components/BookDisplay";
-import {  doc, getDoc, updateDoc} from "firebase/firestore"; 
+import { arrayRemove, collection, deleteField, doc, getDoc, updateDoc} from "firebase/firestore"; 
 import { db } from "../../utils/firebase-config";
 import { NavLink } from "react-router-dom";
 import BookForm from "../components/BookForm";
@@ -48,13 +48,25 @@ const Books = () => {
    
     }
 
-    const handleDelete = (id) => { 
+    const handleDelete = async (id) => { 
         //find where the id = id in the book array in the firestore 
-        //delete doc 
-        let newBookList = bookList.filter(book => book.id !== id); 
-        console.log(newBookList)
-        console.log(`book deleted at ${id}`)
-        setBookList(prevState => [...newBookList]); 
+        //delete book[foundIndex] 
+        //return a new list 
+
+       
+        let index = bookList.findIndex((book) => book.id === id )
+        
+        let bookToDeleteObj = bookList[index]
+        const bookRef = doc(db, "users", authenticatedUser.uid); 
+        
+        //something to note is that each individual book is a Map data structure - simple key value pairings 
+        //https://firebase.google.com/docs/reference/rules/rules.Map 
+        await updateDoc(bookRef, { 
+            books: arrayRemove(bookToDeleteObj)
+        }); 
+
+        //set the booklist to new array without deleted book
+        setBookList(prevState => {return prevState.filter(book => book.id !== id)}); 
     }
 
     //useEffect to sync with the firestore database and update the lists as the list is updated 
