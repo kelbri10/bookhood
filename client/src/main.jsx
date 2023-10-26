@@ -14,7 +14,7 @@ import CreateAccount from './components/CreateAccount';
 import Books from './pages/Books';
 import { AuthProvider } from './AuthContext';
 import Settings from './pages/Settings';
-
+import EditForm from './pages/EditForm';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -26,6 +26,12 @@ const router = createBrowserRouter(
         <Route path="sign-up" element={<CreateAccount />} />
         <Route path="library" element={<Books />} />
         <Route path="settings" element={<Settings />} />
+        <Route path="edit-book" element={<EditForm />}>
+          <Route 
+            path=":id" 
+            element={<EditForm />}
+            />
+        </Route>
       </Route>
     
     )
