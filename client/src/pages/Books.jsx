@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState} from "react";
 import BookDisplay from "../components/BookDisplay";
-import { arrayRemove, collection, deleteField, doc, getDoc, updateDoc} from "firebase/firestore"; 
+import { arrayRemove, doc, getDoc, updateDoc} from "firebase/firestore"; 
 import { db } from "../../utils/firebase-config";
 import { NavLink } from "react-router-dom";
 import BookForm from "../components/BookForm";
@@ -47,6 +47,36 @@ const Books = () => {
         await updateDoc(userRef, {books:[...bookList, form]}); 
    
     }
+    const handleUpdate = async (id, form) => { 
+        //convert p tags to input tags and select option for ratings 
+        //let user choose to edit one or all 
+        //click save
+        //update doc in firestore
+        //update booklist render 
+
+        console.log('updated')
+        console.log(id); 
+        try{ 
+            let updatedBook = form; 
+            let index = bookList.findIndex((book) => book.id === id )
+
+            let ratingStars = new Array(parseInt(form.rating)).fill('⭐').join("");
+        
+            form.rating = ratingStars;
+
+            let updatedBookList = bookList.splice(index, 1, updatedBook); 
+
+            setBookList([...updatedBookList]); 
+
+            const userRef = doc(db, "users", authenticatedUser.uid); 
+            await updateDoc(userRef, {books:[...bookList]}); 
+            
+
+        } catch(err) { 
+            console.log(err); 
+        }
+    }
+
 
     const handleDelete = async (id) => { 
         //find where the id = id in the book array in the firestore 
@@ -104,7 +134,7 @@ const Books = () => {
                 <section className="mx-10 relative">
                 <button onClick={handleDialog}
                     className="bg-custom-mustard-yellow text-custom-dark-gray py-2 px-4 rounded-md my-6">{open ? 'Cancel' : 'Add book'}</button>
-                    <BookDisplay bookList={bookList} handleDelete={handleDelete}/>
+                    <BookDisplay bookList={bookList} handleDelete={handleDelete} handleUpdate={handleUpdate} handleChange={handleChange}/>
                     
                 </section>
 
