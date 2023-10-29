@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState} from "react";
 import BookDisplay from "../components/BookDisplay";
-import { arrayRemove, doc, setDoc, getDoc, updateDoc} from "firebase/firestore"; 
+import { addNewBook, updateBook, deleteBook } from "../controllers/books";
+import { doc, getDoc } from "firebase/firestore"; 
 import { db } from "../../utils/firebase-config";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import BookForm from "../components/BookForm";
 import Navbar from "../components/Navbar";
 import AuthContext from "../AuthContext";
@@ -42,10 +43,8 @@ const Books = () => {
         form.id = uuidv4(); 
         setBookList(prev => [...prev, form]); 
 
-        //setDoc/updateDoc/addDoc take doc references so when doing a reference must start with doc 
-        //collection refers to the collection reference 
-        const userRef = doc(db, "users", authenticatedUser.uid); 
-        await updateDoc(userRef, {books:[...bookList, form]}); 
+       
+        addNewBook(authenticatedUser.uid, form, bookList); 
    
     }
 
@@ -70,11 +69,8 @@ const Books = () => {
                 }
             }); 
             
-            const bookRef = doc(db, "users", authenticatedUser.uid); 
-            
-            await setDoc(bookRef, {books: updatedList})
+            updateBook(authenticatedUser.uid, updatedList); 
           
-            
             
         } catch(err) { 
             console.log(err); 
@@ -88,15 +84,9 @@ const Books = () => {
         let index = bookList.findIndex((book) => book.id === id )
         
         let bookToDelete = bookList[index]
-        const bookRef = doc(db, "users", authenticatedUser.uid); 
+    
+        deleteBook(authenticatedUser.uid, bookToDelete)
         
-        //something to note is that each individual book is a Map data structure - simple key value pairings 
-        //https://firebase.google.com/docs/reference/rules/rules.Map 
-        await updateDoc(bookRef, { 
-            books: arrayRemove(bookToDelete)
-        }); 
-
-        //set the booklist to new array without deleted book
         setBookList(prevState => {return prevState.filter(book => book.id !== id)}); 
     }
 
