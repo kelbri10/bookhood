@@ -1,8 +1,14 @@
 import { db } from "../../utils/firebase-config";
-import { arrayRemove, doc, setDoc, updateDoc} from "firebase/firestore"; 
+import { arrayRemove, doc, getDoc, setDoc, updateDoc} from "firebase/firestore"; 
 
 //setDoc/updateDoc/addDoc take doc references so when doing a reference must start with doc 
 //collection refers to the collection reference 
+
+const getAllBooks = async (userId) => { 
+    const userRef = doc(db, "users", userId); 
+    const userSnap = await getDoc(userRef);
+    return userSnap; 
+}
 const addNewBook = async (userId, form, bookList) => { 
     const userRef = doc(db, "users", userId); 
     await updateDoc(userRef, {books:[...bookList, form]}); 
@@ -23,4 +29,4 @@ const deleteBook = async (userId, book) => {
     }); 
 }
 
-export { addNewBook, updateBook, deleteBook }; 
+export { addNewBook, updateBook, deleteBook, getAllBooks }; 
