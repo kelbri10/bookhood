@@ -14,7 +14,9 @@ const BookCard = ({book, handleDelete, handleUpdate}) => {
         <div className="flex flex-col justify-between border-2 
         rounded-lg w-3/4 md:w-1/3 lg:w-1/4 py-8 px-6
         border-transparent bg-custom-dark-brown  text-white">
-              {edit ? <EditForm book={book} handleUpdate={handleUpdate} /> : 
+              {edit ? <div>
+                <EditForm book={book} handleUpdate={handleUpdate} handleEdit={handleEdit}/>
+                </div> : 
               <div className="flex flex-col justify-between">
                 <BookInfo book={book}/>
                 <div className="flex flex-row justify-between">

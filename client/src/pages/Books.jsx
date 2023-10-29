@@ -1,25 +1,26 @@
 import { useContext, useEffect, useState} from "react";
 import BookDisplay from "../components/BookDisplay";
-import { arrayRemove, doc, getDoc, updateDoc} from "firebase/firestore"; 
+import { arrayRemove, doc, setDoc, getDoc, updateDoc} from "firebase/firestore"; 
 import { db } from "../../utils/firebase-config";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import BookForm from "../components/BookForm";
 import Navbar from "../components/Navbar";
 import AuthContext from "../AuthContext";
 import { v4 as uuidv4 } from 'uuid'; 
+
 const Books = () => { 
     const [open, setOpen] = useState(false);
     const [form, setForm] = useState({id:'', title: '', author:'', rating: '', startDate:'', endDate:''})
     const [bookList, setBookList] = useState([]);
     const {authenticatedUser} = useContext(AuthContext); 
 
+    //const navigate = useNavigate(); 
     const handleDialog = () => { 
       setOpen(prevState => !prevState); 
     }
   
     //handles input changes that the user puts in 
     const handleChange = (e) => { 
-       // e.preventDefault();
             setForm({ 
                 ...form, 
                 [e.target.id]: e.target.value
@@ -30,7 +31,7 @@ const Books = () => {
     //adds the book to the book array in firebase, updates the booklist state and displays 
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
-        console.log(form)
+       
         setOpen(prevState => !prevState)
         if(form.rating === ""){ 
             form.rating = 1; 
@@ -47,43 +48,43 @@ const Books = () => {
         await updateDoc(userRef, {books:[...bookList, form]}); 
    
     }
-    const handleUpdate = async (id, form) => { 
-        //convert p tags to input tags and select option for ratings 
-        //let user choose to edit one or all 
-        //click save
-        //update doc in firestore
-        //update booklist render 
 
-        console.log('updated')
-        console.log(id); 
-        try{ 
-            let updatedBook = form; 
-            let index = bookList.findIndex((book) => book.id === id )
+  
 
-            let ratingStars = new Array(parseInt(form.rating)).fill('⭐').join("");
+    const handleUpdate = async (id, bookToUpdate) => { 
         
-            form.rating = ratingStars;
+        try{ 
+           
+            if(bookToUpdate.rating === ""){ 
+                bookToUpdate.rating = 1; 
+            }
+            bookToUpdate.rating = new Array(parseInt(bookToUpdate.rating)).fill('⭐').join(""); 
 
-            let updatedBookList = bookList.splice(index, 1, updatedBook); 
+            let index = bookList.findIndex((book) => book.id === id); 
 
-            setBookList([...updatedBookList]); 
-
-            const userRef = doc(db, "users", authenticatedUser.uid); 
-            await updateDoc(userRef, {books:[...bookList]}); 
+            let updatedList = bookList.map((book, i) => { 
+                if (i === index){ 
+                    return bookToUpdate; 
+                } else { 
+                    return book; 
+                }
+            }); 
             
-
+            const bookRef = doc(db, "users", authenticatedUser.uid); 
+            
+            await setDoc(bookRef, {books: updatedList})
+          
+            
+            
         } catch(err) { 
             console.log(err); 
         }
+
     }
 
 
     const handleDelete = async (id) => { 
-        //find where the id = id in the book array in the firestore 
-        //delete book[foundIndex] 
-        //return a new list 
 
-       
         let index = bookList.findIndex((book) => book.id === id )
         
         let bookToDelete = bookList[index]
@@ -109,7 +110,8 @@ const Books = () => {
                 if(userSnap.exists()) { 
                     if(!ignore){ 
                         console.log(userSnap.data())
-                        setBookList(userSnap.data().books)
+                        let booksData = userSnap.data().books; 
+                        setBookList([...booksData])
                     }
                 } 
             }
@@ -134,12 +136,19 @@ const Books = () => {
                 <section className="mx-10 relative">
                 <button onClick={handleDialog}
                     className="bg-custom-mustard-yellow text-custom-dark-gray py-2 px-4 rounded-md my-6">{open ? 'Cancel' : 'Add book'}</button>
-                    <BookDisplay bookList={bookList} handleDelete={handleDelete} handleUpdate={handleUpdate} handleChange={handleChange}/>
+                    <BookDisplay 
+                        bookList={bookList} 
+                        handleDelete={handleDelete} 
+                        handleUpdate={handleUpdate} 
+                        handleChange={handleChange}/>
                     
                 </section>
 
                 <dialog className="border-2 border-custom-dark-gray bg-white text-custom-dark-gray rounded-md p-6 absolute top-1/4 w-1/2 md:w-1/3 md:top-1/3" open={open}>
-                    <BookForm form={form} handleSubmit={handleSubmit} handleChange={handleChange}/>
+                    <BookForm 
+                        form={form} 
+                        handleSubmit={handleSubmit} 
+                        handleChange={handleChange}/>
                 </dialog> 
 
             </div> :  

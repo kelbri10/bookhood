@@ -1,25 +1,26 @@
 import { useState } from "react";
-const EditForm = ({book, handleUpdate}) => { 
+const EditForm = ({book, handleUpdate, handleEdit}) => { 
     
     const {id, title, author, rating, startDate, endDate} = book;
-    const [form, setForm] = useState({id:id, title: title, author:author, rating: rating, startDate:startDate, endDate:endDate})
+    const [bookToUpdate, setBookToUpdate] = useState({id:id, title: title, author:author, rating: rating.length, startDate:startDate, endDate:endDate})
     
     const handleChange = (e) => { 
-             setForm({ 
-                 ...form, 
+        setBookToUpdate({ 
+                 ...bookToUpdate, 
                  [e.target.id]: e.target.value
              }); 
     }
 
+
+
     return( 
     
-        <form className="flex flex-col"
-        onSubmit={() => handleUpdate(id, form)}>
+        <form className="flex flex-col">
           
             <label htmlFor="title">
                 Title
                 <input className="m-1 p-1 text-custom-dark-brown rounded-lg"
-                value={form.title}
+                value={bookToUpdate.title}
                 type="text"
                 id="title"
                 onChange={handleChange}
@@ -29,7 +30,7 @@ const EditForm = ({book, handleUpdate}) => {
             <label htmlFor="author">
                 Author
                 <input className="m-1 p-1 text-custom-dark-brown rounded-lg"
-                value={form.author}
+                value={bookToUpdate.author}
                 type="text"
                 id="author"
                 onChange={handleChange} 
@@ -42,7 +43,7 @@ const EditForm = ({book, handleUpdate}) => {
                 className="m-1 p-1 text-custom-dark-brown rounded-lg" 
                 name="rating" 
                 id="rating" 
-                value={form.rating}
+                value={bookToUpdate.rating}
                 onChange={handleChange}
                 required>
                     <option  value="1">1</option>
@@ -58,7 +59,7 @@ const EditForm = ({book, handleUpdate}) => {
                 <input 
                 type="date" 
                 id="startDate" 
-                value={form.startDate}
+                value={bookToUpdate.startDate}
                 onChange={handleChange}
                 name="startDate" 
                 className="m-1 p-1 text-custom-dark-brown rounded-lg" />
@@ -70,13 +71,19 @@ const EditForm = ({book, handleUpdate}) => {
                 type="date" 
                 id="endDate" 
                 name="endDate" 
-                value={form.endDate}
+                value={bookToUpdate.endDate}
                 onChange={handleChange}
                 className="m-1 p-1 text-custom-dark-brown rounded-lg" />
             </label>
 
             <button className="bg-custom-dark-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg hover:scale-125 text-white mt-3 py-2 px-4 rounded-md md:w-1/2 self-center"
-            type="submit">Save</button>
+            type="button"
+            onClick={() => handleUpdate(id, bookToUpdate)}>
+                Update
+            </button>
+
+            <button  className="bg-custom-dark-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg hover:scale-125 text-white mt-3 py-2 px-4 rounded-md md:w-1/2 self-center"
+            type="button" onClick={handleEdit}>Done</button>
         </form>
     
         
