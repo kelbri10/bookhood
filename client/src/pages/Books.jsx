@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { NavLink } from "react-router-dom";
 import AuthContext from "../AuthContext";
 
-import BookDisplay from "../components/BookDisplay";
+import BookCard from "../components/BookCard";
 import BookForm from "../components/BookForm";
 import Navbar from "../components/Navbar";
 import { addNewBook, updateBook, deleteBook, getAllBooks } from "../controllers/booksController";
@@ -29,8 +29,8 @@ const Books = () => {
             }); 
     }
 
-    const formatStars = (rating) => { 
-        let ratingStars; 
+    const formatStars = (rating) => {
+        let ratingStars;  
         if(rating === ""){ 
             rating = 1; 
         }
@@ -73,6 +73,7 @@ const Books = () => {
             console.log(updatedList); 
             updateBook(authenticatedUser.uid, updatedList); 
           
+            setBookList(updatedList); 
             
         } catch(err) { 
             console.log(err); 
@@ -128,11 +129,20 @@ const Books = () => {
                 <section className="mx-10 relative">
                 <button onClick={handleDialog}
                     className="bg-custom-mustard-yellow text-custom-dark-gray py-2 px-4 rounded-md my-6">{open ? 'Cancel' : 'Add book'}</button>
-                    <BookDisplay 
-                        bookList={bookList} 
-                        handleDelete={handleDelete} 
-                        handleUpdate={handleUpdate} 
-                        handleChange={handleChange}/>
+          
+
+            <section className=" flex flex-col items-center gap-2 md:flex-row md:gap-2 md:flex-wrap">
+                {bookList.length === 0 ? 
+                    <p>You have no books to display. Click Add book to add a new book to your collection</p>
+                    : bookList.map(book => 
+                        <div key={book.id} className="flex flex-col justify-between border-2 
+                        rounded-lg w-3/4 md:w-1/3 lg:w-1/4 py-8 px-6
+                        border-transparent bg-custom-dark-brown  text-white">
+                            <BookCard book={book} handleUpdate={handleUpdate} handleDelete={handleDelete} />
+                        </div>
+                )}
+
+            </section>
                     
                 </section>
 

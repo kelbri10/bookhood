@@ -1,5 +1,5 @@
 import { useState } from "react";
-const EditForm = ({book, handleUpdate}) => { 
+const EditForm = ({book, handleUpdate, handleEdit}) => { 
     
     const {id, title, author, rating, startDate, endDate} = book;
     const [bookToUpdate, setBookToUpdate] = useState({id:id, title: title, author:author, rating: rating.length, startDate:startDate, endDate:endDate})
@@ -78,7 +78,7 @@ const EditForm = ({book, handleUpdate}) => {
 
             <button className="bg-custom-dark-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg  text-white mt-3 py-2 px-4 rounded-md md:w-1/2 self-center"
             type="button"
-            onClick={() => handleUpdate(id, bookToUpdate)}>
+            onClick={() => {handleUpdate(id, bookToUpdate); handleEdit();}}>
                 Update
             </button>
 
