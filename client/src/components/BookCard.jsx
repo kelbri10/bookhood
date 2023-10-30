@@ -1,32 +1,43 @@
 import {FiTrash2, FiEdit} from "react-icons/fi";
+import BookInfo from "./BookInfo";
+import EditForm from "./EditForm";
+import { useState} from "react";
 
-const BookCard = ({book, handleDelete, handleEdit}) => { 
+const BookCard = ({ book, handleUpdate, handleDelete}) => { 
+    const [edit, setEdit] = useState(false); 
 
-    const {id, title, author, rating, startDate, endDate} = book; 
+
+    const handleEdit = () => { 
+        setEdit(prevState =>  !prevState)
+    }
+
+    // useEffect(() => { 
+    //     let ignore = false; 
+    //     const getData = async() => { 
+          
+    //     }
+    //     getData(); 
+   
+    //     return () => { 
+    //         ignore = true; 
+    //     }; 
+    // },[edit])
 
     return(
-        <article key={id} className="flex flex-col justify-between border-2 
-        rounded-lg w-3/4 md:w-1/3 lg:w-1/4 h-80 py-8 px-6
-        border-transparent bg-custom-dark-brown  text-white"> 
-            <div>
-                <p>{title}</p>
-                <p>{author}</p>
-                <p>{rating}</p> 
-            </div>
-
-            {!startDate || !endDate ? <div>Click edit to add start and completed date</div>: 
-             <div>
-             <p>Start Date: {startDate}</p>
-             <p>Completed: {endDate}</p>
-         </div>}
-            
-            
-            <div className="flex flex-row justify-between">
-                {/* for the delete button need to get the books id number */}
-                <button onClick={() => handleDelete(id)}><FiTrash2/></button>
-                <button onClick={() => handleEdit(id)}><FiEdit /></button>
-            </div>
-        </article>
+        <div>
+             {edit ? 
+                <div className="flex flex-col justify-center items-center">
+                    <EditForm book={book} handleUpdate={handleUpdate} handleEdit={handleEdit} />
+                </div> : 
+                <div className="flex flex-col justify-between">
+                    <BookInfo book={book}/>
+                    <div className="flex flex-row justify-between">
+                        <button onClick={() => handleDelete(book.id)}><FiTrash2/></button>
+                        <button onClick={handleEdit}><FiEdit /></button>
+                    </div>
+                </div>}
+        </div>
+       
     )
 }
 

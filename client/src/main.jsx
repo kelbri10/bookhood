@@ -15,7 +15,6 @@ import Books from './pages/Books';
 import { AuthProvider } from './AuthContext';
 import Settings from './pages/Settings';
 
-
 const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
