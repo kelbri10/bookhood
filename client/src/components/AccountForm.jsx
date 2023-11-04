@@ -2,7 +2,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri"; 
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-const AccountForm = ({formHeading, email, password, handleEmail, handlePassword, handleSubmit}) => { 
+const AccountForm = ({formHeading, email, password, invalidPassword, handleEmail, handlePassword, handleSubmit}) => { 
 
     return(
         <div>
@@ -25,7 +25,7 @@ const AccountForm = ({formHeading, email, password, handleEmail, handlePassword,
                             value={email}
                             onChange={handleEmail}
                             required/>
-                        {!email ? <div>Please enter a valid email.</div>: null}
+                        
                     </div>
                     
 
@@ -40,10 +40,12 @@ const AccountForm = ({formHeading, email, password, handleEmail, handlePassword,
                         value={password}
                         onChange={handlePassword} 
                         required/>
-                        {!password ? <div>Please enter a valid password.</div>: null}
+                        
                     </div>
                     
-
+                    <div className="text-rose-700">
+                    {invalidPassword !== '' ? <p>{invalidPassword}</p> : null}
+                    </div>
                     <button className="mx-auto my-8 py-2 bg-custom-dark-green text-white w-full md:w-3/4 rounded-md"
                     type="submit">Submit</button>
 

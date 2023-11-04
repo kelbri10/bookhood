@@ -6,22 +6,10 @@ import { useState} from "react";
 const BookCard = ({ book, handleUpdate, handleDelete}) => { 
     const [edit, setEdit] = useState(false); 
 
-
+ 
     const handleEdit = () => { 
         setEdit(prevState =>  !prevState)
     }
-
-    // useEffect(() => { 
-    //     let ignore = false; 
-    //     const getData = async() => { 
-          
-    //     }
-    //     getData(); 
-   
-    //     return () => { 
-    //         ignore = true; 
-    //     }; 
-    // },[edit])
 
     return(
         <div>
