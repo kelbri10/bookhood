@@ -117,13 +117,12 @@ const Books = () => {
   
     return( 
         
-        <main>
+        <main className="bg-custom-lgt-brown">
         
             {authenticatedUser ? 
             <div>
                 <header>
-                    <Navbar />
-                    <h1 className="p-10 text-3xl font-bold text-center">Happy Reading, User!</h1>
+                    <h1 className="p-10 text-3xl font-bold text-center font-heading">Library</h1>
                 </header>
         
                 <section className="mx-10 relative">

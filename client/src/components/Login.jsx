@@ -52,7 +52,7 @@ const Login = () => {
             {/* NEED TO FIGURE OUT HOW TO SET LOADING */}
             {loading ? <p className="text-5xl">LOADING</p> : null }
 
-            <AccountForm formHeading={'Welcome Back!'}
+            <AccountForm formHeading={'welcome back'}
             email={email} 
             password={password} 
             handleEmail={handleEmail} 

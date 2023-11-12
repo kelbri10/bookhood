@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
 import useFormInfo from "../hooks/useFormInfo"; 
 import AccountForm from "./AccountForm";
-import bookImg from "../pages/images/undraw_book_reading_re_fu2c.svg"
 import { useState } from "react";
 //add redirect to the main page
 //how to make sure what the user does under account is connected to the books they save in the database
@@ -42,7 +41,7 @@ const CreateAccount = () => {
 
     return(
         <div className="">
-            <AccountForm formHeading={'Create Account'}
+            <AccountForm formHeading={'create account'}
             email={email} 
             password={password} 
             handleEmail={handleEmail} 
