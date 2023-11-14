@@ -2,6 +2,7 @@ import { auth } from "../../utils/firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import useFormInfo from "../hooks/useFormInfo";
 import AccountForm from "./AccountForm";
+
 import AuthContext  from "../AuthContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +17,8 @@ const Login = () => {
     //test login information test@gmail.com password: testpassword
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
-        setLoading(true);
-        console.log(loading)
        try{  
+            setLoading(true);
             let userCredential = await signInWithEmailAndPassword(auth, email, password); 
             handleReset(); 
             setLoading(false)
@@ -47,11 +47,10 @@ const Login = () => {
 
     return ( 
       
-        <div className="">
+        <div className="bg-custom-lgt-brown h-screen">
 
             {/* NEED TO FIGURE OUT HOW TO SET LOADING */}
             {loading ? <p className="text-5xl">LOADING</p> : null }
-
             <AccountForm formHeading={'welcome back'}
             email={email} 
             password={password} 
@@ -59,7 +58,6 @@ const Login = () => {
             handlePassword={handlePassword} 
             handleSubmit={handleSubmit}/>     
 
-            
         </div>
     
     )

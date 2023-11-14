@@ -1,12 +1,13 @@
+import "../pages/Fonts.css"
 
-
-const BookForm = ({form, handleChange, handleSubmit}) => { 
+const BookForm = ({form, handleChange, handleSubmit, handleDialog}) => { 
     
     return( 
-        
-        <form className="flex flex-col"
+        <>
+        <button onClick={handleDialog} className="mb-2 text-custom-green">Close</button>
+        <form className="flex flex-col body"
         onSubmit={handleSubmit}>
-          
+            <h2 className="heading text-3xl text-center mb-4">add book</h2>
             <label htmlFor="title">
                 Title
                 <input className="m-2 p-2 w-5/6 md:w-full border-2 border-custom-dark-gray rounded-md text-custom-dark-gray"
@@ -30,7 +31,7 @@ const BookForm = ({form, handleChange, handleSubmit}) => {
             <label htmlFor="rating">
                 Rating
                 <select 
-                className="m-2 border-2 border-custom-dark-gray rounded text-custom-dark-gray" 
+                className="m-2 p-2 border-2 border-custom-dark-gray rounded text-custom-dark-gray" 
                 name="rating" 
                 id="rating" 
                 onChange={handleChange}
@@ -65,9 +66,10 @@ const BookForm = ({form, handleChange, handleSubmit}) => {
                 className="border-2 border-custom-dark-green p-2 ml-4 rounded-md" />
             </label>
 
-            <button className="bg-custom-dark-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg hover:scale-125 text-white mt-6 py-2 px-4 rounded-md md:w-1/2 self-center"
+            <button className="bg-custom-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg hover:scale-125 text-white mt-6 py-2 px-4 rounded-md md:w-1/2 self-center"
             type="submit">Submit</button>
         </form>
+        </>
     
         
     )

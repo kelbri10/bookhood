@@ -19,9 +19,9 @@ const BookCard = ({ book, handleUpdate, handleDelete}) => {
                 </div> : 
                 <div className="flex flex-col justify-between">
                     <BookInfo book={book}/>
-                    <div className="flex flex-row justify-between">
-                        <button onClick={() => handleDelete(book.id)}><FiTrash2/></button>
-                        <button onClick={handleEdit}><FiEdit /></button>
+                    <div className="pt-6 flex flex-row justify-between">
+                        <button onClick={() => handleDelete(book.id)}><FiTrash2 className="text-custom-green"/></button>
+                        <button onClick={handleEdit}><FiEdit className="text-custom-green" /></button>
                     </div>
                 </div>}
         </div>
