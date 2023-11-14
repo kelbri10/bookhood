@@ -12,16 +12,16 @@ Book tracking should be easy to use and easy to understand. Bookhood invites use
 This past year I've been rekindling my love for books. I have increased the number of books I'm reading and I follow content creators who vlog and stream their own reading journeys. After researching present competitors such as Bookshelf, Basmo, and Italic Type, I wanted to present my own version of a book tracking app that creates a cozy atmosphere.
 
 ## Design 
-Before I started programming, I first designed a hi-res wireframe to layout the design and the look I wanted to go for.
-![Wireframe of Bookhood home page, dropdown menu, and account creation pages](image.png)
+Before I started programming, I first designed a wireframe to layout the design and the look I wanted to go for.
+![Initial figma wireframe of bookhood](image-7.png))
 
 Using color contrast testers, I intentionally chose a natural color palette. Natural colors such as brown and green are soothing to look at. I felt they would enhance the overall feel and aesthetic of the application.
 
 ![Color Palette featuring dark green, dark brown, tan, medium brown, and medium green, Also shows font conversions for mobile and desktop layouts from px to rem](image-1.png)
 
-I chose to pair a serif font, Libre Bakersville, with a sans-serif font, Source Sans Pro. I felt the font pairing added simplicity and a level of intelligence to the design. The contrast was very interesting to look at.
+I chose to pair a fat serif font, Asset, with another serif font, Tinos. I felt the font pairing added simplicity and a level of intelligence to the design. The contrast was very interesting to look at.
 
-Below features an alternative look I pictured for iOs and Android applications if I extended to mobile development in React Native at a later time.
+Below features an alternative look I initially pictured for iOs and Android applications if I extended to mobile development in React Native at a later time.
 ![](image-2.png)
 
 ## Features 
@@ -36,28 +36,16 @@ Below features an alternative look I pictured for iOs and Android applications i
 ## Visuals
 Homepage on the desktop version, small screen: 
 
-![Top of the screen with hamburger menu and bookhood logo displayed, image text says "Bookhood, A cozy book app to curl up with", there is an icon that displays an illustrated girl showcasing an open book](image-3.png) 
+![image says "Bookhood: Book tracking has never been easier. Whether  you're a new member or an old friend, Bookhood allows you to easily track your in-progress and completed books."](image-8.png)
 
-How It works section with a prototype mobile only design displaying future mobile design: 
+The library displays the number of books currently saved. It displays the rating, title, author, start and completed dates if added. If the user leaves the dates blank they are prompted to click edit in order to add the dates. 
 
-![Displays "How it Works" section with a prototype mobile only design](image-4.png)
+![Screenshot of library with 3 books listed, displays book titles, authors, ratings. Two of the books do not have start or end dates and prompt the user to enter them.](image-9.png)
 
-Current view of the work in progress page that allows user to add book to the page and to their list: 
+When a user is ready to add a new book to their library, they can click add book. They are then shown a dialog box that prompts them to input information about their new book. 
 
-![Work in Progress User Page that allows user to add book](image-6.png)
+![Screenshot of form that pops up to prompt user to add new title, author, rating, start and completed dates](image-10.png)
 
-## To-Do List 
-- [ ] Add profile customization page to allow user to customize preferences 
-
-- [ ] Integrate 3rd-party API that will allow user's to receive personalized recommendations and to add books via API with book cover
-
-- [ ] Allow users to add an image to their saved book
-
-- [ ] User comment/note section to state thoughts
-
-- [ ] Tags to track "in progress", "not started", and "completed"
-
-- [ ] Loading icon to provide user feedback
 
 ## Installation 
 To install the project on your local environment, first make sure you have an account on Google's Firebase platform. 
