@@ -46,6 +46,9 @@ When a user is ready to add a new book to their library, they can click add book
 
 ![Screenshot of form that pops up to prompt user to add new title, author, rating, start and completed dates](image-10.png)
 
+When the user is not logged in/logs out they are shown an error screen that states they aren't currently logged in with a link to go to the login page.
+![Screenshot of error page stating that the user is not currently logged in and cannot access their library at this time](image-11.png)
+
 
 ## Installation 
 To install the project on your local environment, first make sure you have an account on Google's Firebase platform. 
