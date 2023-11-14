@@ -5,11 +5,13 @@ const BookInfo = ({book, handleEdit}) => {
 
     return(
         
-        <article key={id}> 
+        <article className="text-custom-green" key={id}> 
             <div>
-                <p>{title}</p>
-                <p>{author}</p>
-                <p>{rating}</p> 
+                <p className="pb-4">{rating}</p> 
+                <div className="flex flex-row gap-10">
+                    <p className="font-bold">{title}</p>
+                    <p>{author}</p>
+                </div>
             </div>
 
             {!startDate || !endDate ? <div>Click edit to add start and completed date</div>: 
