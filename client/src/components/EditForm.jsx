@@ -17,9 +17,10 @@ const EditForm = ({book, handleUpdate, handleEdit}) => {
     
         <form className="flex flex-col">
           
-            <label htmlFor="title">
+            <label htmlFor="title"
+            className="text-custom-dark-gray">
                 Title
-                <input className="m-1 p-1 text-custom-dark-brown rounded-lg"
+                <input className="m-1 p-1 text-custom-dark-gray rounded-lg"
                 value={bookToUpdate.title}
                 type="text"
                 id="title"
@@ -27,9 +28,10 @@ const EditForm = ({book, handleUpdate, handleEdit}) => {
                 required />
             </label>
 
-            <label htmlFor="author">
+            <label htmlFor="author"
+            className="text-custom-dark-gray">
                 Author
-                <input className="m-1 p-1 text-custom-dark-brown rounded-lg"
+                <input className="m-1 p-1 text-custom-dark-gray rounded-lg"
                 value={bookToUpdate.author}
                 type="text"
                 id="author"
@@ -37,10 +39,11 @@ const EditForm = ({book, handleUpdate, handleEdit}) => {
                 required />
             </label>
 
-            <label htmlFor="rating">
+            <label htmlFor="rating"
+            className="text-custom-dark-gray">
                 Rating
                 <select 
-                className="m-1 p-1 text-custom-dark-brown rounded-lg" 
+                className="m-1 p-1 text-custom-dark-gray rounded-lg" 
                 name="rating" 
                 id="rating" 
                 value={bookToUpdate.rating}
@@ -54,7 +57,8 @@ const EditForm = ({book, handleUpdate, handleEdit}) => {
                 </select>
             </label>
 
-            <label htmlFor="startDate">
+            <label htmlFor="startDate"
+            className="text-custom-dark-gray">
                 Start Date
                 <input 
                 type="date" 
@@ -62,10 +66,11 @@ const EditForm = ({book, handleUpdate, handleEdit}) => {
                 value={bookToUpdate.startDate}
                 onChange={handleChange}
                 name="startDate" 
-                className="m-1 p-1 text-custom-dark-brown rounded-lg" />
+                className="m-1 p-1 text-custom-dark-gray rounded-lg" />
             </label>
 
-            <label htmlFor="endDate">
+            <label htmlFor="endDate"
+            className="text-custom-dark-gray">
                 End Date
                 <input 
                 type="date" 
@@ -76,7 +81,7 @@ const EditForm = ({book, handleUpdate, handleEdit}) => {
                 className="m-1 p-1 text-custom-dark-brown rounded-lg" />
             </label>
 
-            <button className="bg-custom-dark-green transition-all delay-150 ease-in hover:bg-custom-md-green hover:text-custom-dark-brown hover:drop-shadow-lg  text-white mt-3 py-2 px-4 rounded-md md:w-1/2 self-center"
+            <button className=" text-custom-dark-gray transition-all delay-100 ease-in hover:text-white hover:bg-custom-green hover:text-custom-dark-brown hover:drop-shadow-lg mt-3 py-2 px-4 rounded-md md:w-1/2 self-center"
             type="button"
             onClick={() => {handleUpdate(id, bookToUpdate); handleEdit();}}>
                 Update
