@@ -21,8 +21,10 @@ const Login = () => {
             setLoading(true);
             let userCredential = await signInWithEmailAndPassword(auth, email, password); 
             handleReset(); 
-            setLoading(false)
-            console.log(loading)
+            setLoading(false); 
+        //     setTimeout(() => { 
+        //    , 5000); 
+
         } catch(error){ 
             const errorCode = error.code; 
             const errorMessage = error.message; 
@@ -50,13 +52,16 @@ const Login = () => {
         <div className="bg-custom-lgt-brown h-screen">
 
             {/* NEED TO FIGURE OUT HOW TO SET LOADING */}
-            {loading ? <p className="text-5xl">LOADING</p> : null }
+            {loading ? 
+            <div className="flex justify-center items-center h-screen">
+            <p className="text-5xl heading">Successful login! Redirecting...</p>
+            </div> : 
             <AccountForm formHeading={'welcome back'}
             email={email} 
             password={password} 
             handleEmail={handleEmail} 
             handlePassword={handlePassword} 
-            handleSubmit={handleSubmit}/>     
+            handleSubmit={handleSubmit}/>  }    
 
         </div>
     
