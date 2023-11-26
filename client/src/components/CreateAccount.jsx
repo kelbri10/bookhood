@@ -41,8 +41,9 @@ const CreateAccount = () => {
     return(
         <div className="bg-custom-lgt-brown h-screen">
             {loading ? 
-          
-                <p className="text-5xl heading">Success! Redirecting...</p>
+                <div className="flex justify-center items-center h-screen">
+                    <p className="text-5xl heading">Account created! Redirecting...</p>
+                </div>
              : 
             
                 <AccountForm formHeading={'create account'}
